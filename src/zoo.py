@@ -31,8 +31,9 @@ class Fence:
 
         else:
             self.area: float = float(area)
+            self.remaining_area: float = float(area)
 
-        while not(is_float(temperature)):
+        if not(is_float(temperature)):
 
             return
 
@@ -40,8 +41,8 @@ class Fence:
             self.temperature: float = float(temperature)
 
         self.habitat: str = habitat
-        self.remaining_area: float = area
         self.animals: list[Any] = animals.copy()
+ 
 
     def __str__(self) -> str:
 
@@ -74,13 +75,13 @@ class Animal:
         self.name: str = name
         self.species: str = species
 
-        while (type(age) != int)or(age <= 0):
+        if (type(age) != int)or(age <= 0):
             
             return
         else:
             self.age: int = age
 
-        while (not(is_float(height)))or(height <= 0):
+        if (not(is_float(height)))or(height <= 0):
 
             return
 
@@ -88,7 +89,7 @@ class Animal:
             self.height: float = float(height)
 
 
-        while (not(is_float(width)))or(width <= 0):
+        if (not(is_float(width)))or(width <= 0):
 
             return
 
