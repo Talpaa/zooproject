@@ -83,27 +83,30 @@ class TestZoo(TestCase):
 
         self.assertEqual(result, fence_1.area, message)
 
+    def test_time_clean(self):
+
+        #Questo test controlla che la fence una volta inseriti gli animali la dimensione della fence venga diminuita
+        zookeeper_1: ZooKeeper = ZooKeeper(name='Mario',surname='Rossi',id='5213')
+        animal_1: Animal = Animal(name="Toledo", species="volpe", age=16, height=0.5, width=1.25, preferred_habitat="Savana")
+        fence_1: Fence = Fence(area=100,temperature=25.0,habitat='Savana')
+        zookeeper_1.add_animal(animal_1, fence_1)
+
+        result: float = round(zookeeper_1.clean(fence_1), 3)
+
+        if (fence_1.area - (animal_1.height * animal_1.width)) > 0.0:
+
+            controllo: float =  round((animal_1.height * animal_1.width)/(fence_1.area - (animal_1.height * animal_1.width)), 3)
+            message: str = f'Taccini)Error: the function clean should return {controllo} not {result}'
+            self.assertEqual(result, controllo, message)
+        
+        else:
+
+            controllo: float = round((animal_1.height * animal_1.width), 3)
+            message: str = f'Taccini)Error: the function clean should return {controllo} not {result}'
+            self.assertEqual(result, controllo, message)
 
 
 
 if __name__ == "__main__":
 
-    unittest.main()
-
-
-'''test_result: bool = False
-
-try:
-
-    zookeeper.remove_animal(animal_1, fence_1)
-
-except Exception:
-
-    test_result = True
-
-self.assertEqual(test_result, True, message)'''
-
-
-
-    
-        
+    unittest.main()        

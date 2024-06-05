@@ -186,7 +186,7 @@ class ZooKeeper:
         
         else:
 
-            return area_occupata
+            return round(area_occupata, 3)
     
     def __str__(self) -> str:
         
